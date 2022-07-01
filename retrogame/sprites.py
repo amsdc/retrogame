@@ -72,6 +72,7 @@ class Stone(pygame.sprite.Sprite):
         
         self.surf = pygame.Surface((self.player_width, self.player_height))
         # self.surf = pygame.image.load("img/stone.png").convert()
+        # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.surf.fill((255, 255, 255))
         self.rect = self.surf.get_rect(
