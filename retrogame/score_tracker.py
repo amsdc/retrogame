@@ -3,10 +3,14 @@ from retrogame.constants import FILE_PATH
 
 
 class Score:
+    file = open(FILE_PATH, "w")
     def __init__(self):
         self.score__ = {"lives": 3, "score": 0}
-        print(FILE_PATH)
-        self.file = open(FILE_PATH, "w")
+
+    @classmethod
+    def getScoreFromFile(cls):
+        f = json.load(cls.file)
+        return f["score"]
 
     def getLives(self):
         return self.score__["lives"]
