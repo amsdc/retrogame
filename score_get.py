@@ -14,7 +14,7 @@ textRect.center = (350,350)
 while True:
     app.fill((255,255,255))
     app.blit(text,textRect)
-    text = font.render(f"Score : {score.getScore()}", True, (255, 255, 255), (0, 0, 0))
+    text = font.render(f"Lives : {score.getLives()}", True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
     textRect.center = (350, 350)
     for event in pygame.event.get():

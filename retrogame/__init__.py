@@ -37,6 +37,8 @@ class App():
         
         self.clock = pygame.time.Clock()
 
+        self.font = pygame.font.Font("BACKTO1982.ttf",30)
+
         self.mainloop()
         
     def mainloop(self):
@@ -69,6 +71,11 @@ class App():
                     self.all_sprites.add(new_enemy)
             
             self.screen.fill((0,0,0))
+
+            text = self.font.render(f"Lives : {self.scoretracker.getLives()}", True, (255, 255, 255), (0, 0, 0))
+            textRect = text.get_rect()
+            textRect.top = 5
+            textRect.left = 5
                     
             pressed_keys = pygame.key.get_pressed()
             
@@ -86,7 +93,7 @@ class App():
             if pygame.sprite.spritecollideany(self.player, self.enemies):
                 # If so, then remove the player and stop the loop
                 #print(self.scoretracker.getLives())
-                if self.scoretracker.getLives()==0:
+                if self.scoretracker.getLives()==1:
                     self.player.kill()
                     self.running = False
                 else:
@@ -95,8 +102,8 @@ class App():
                         if isinstance(element, sp.Stone):
                             element.kill()
                     self.scoretracker.rem_life()
-            
-            
+
+            self.screen.blit(text, textRect)
             pygame.display.flip()
             
             self.clock.tick(500)
