@@ -23,6 +23,7 @@ class App():
         
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
+        
         # Create a custom event for adding a new enemy
         self.ADDENEMY = pygame.USEREVENT + 1
         pygame.time.set_timer(self.ADDENEMY, 750)
@@ -33,6 +34,8 @@ class App():
         self.enemies = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.player)
+        
+        self.clock = pygame.time.Clock()
 
         self.mainloop()
         
@@ -85,7 +88,7 @@ class App():
                     self.player.kill()
                     self.running = False
                 else:
-                    hitlist = pygame.sprite.spritecollide(self.player, self.enemies,False)
+                    hitlist = pygame.sprite.spritecollide(self.player, self.enemies, False)
                     for element in hitlist:
                         if isinstance(element, sp.Stone):
                             element.kill()
@@ -93,6 +96,8 @@ class App():
             
             
             pygame.display.flip()
+            
+            self.clock.tick(500)
         
         # surf, rect = self.create_surface()
         
