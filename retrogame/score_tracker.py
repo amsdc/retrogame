@@ -31,7 +31,7 @@ class Score:
             return False
 
     def rem_life(self):
-        if (self.score__["lives"] >= 0):
+        if self.score__["lives"] >= 0:
             self.score__["lives"] -= 1
         else:
             return False
