@@ -8,36 +8,47 @@ class Score:
     def __init__(self):
 
         self.__lives=3
-        self.file = open(FILE_PATH, "w+")
-        self.dictscore = json.load(self.file) if self.file.read() else {"Highscore": 0}
+        # self.file = open(FILE_PATH, "w+")
+        
 
-        self.__score = 0
+        self.score = 0
+        self.open_file()
+    
+    
+    def open_file(self):
+        self.file = open(FILE_PATH, "r")
+        try:
+            self.more = int(self.file.read())
+        except:
+            self.more = 0
+
 
     def getLives(self):
         return self.__lives
 
 
     def getScore(self):
-        return self.__score
+        return self.score
+    
+    def get_max_score(self):
+        return self.more
 
     def save_score(self):
-        self.dictscore = json.load(self.file) if self.file.read() else {"Highscore": 0}
-        print(self.__score, self.dictscore["Highscore"])
-        if self.__score > self.dictscore["Highscore"]:
-            print("cond")
-            self.dictscore["Highscore"] = self.__score
-
-        json.dump(self.dictscore, self.file)
+        if self.score > self.more:
+            self.more = self.score
+            
+        with open(FILE_PATH, "w") as fh:
+            fh.write(str(self.more))
 
     def close_file(self):
         self.file.close()
 
     def add_point(self):
-        self.__score += 1
+        self.score += 1
 
     def rem_point(self):
-        if self.__score >= 0:
-            self.__score -= 1
+        if self.score >= 0:
+            self.score -= 1
         else:
             return False
 

@@ -21,7 +21,6 @@ from retrogame.score_tracker import Score as ScoreTracker
 
 from retrogame import sounds 
 
-
 class App():
     def __init__(self):
         # Sound Initiator
@@ -35,7 +34,7 @@ class App():
         
         # Create a custom event for adding a new enemy
         self.ADDENEMY = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADDENEMY, 750)
+        pygame.time.set_timer(self.ADDENEMY, int((1/SCREEN_WIDTH)*10e4*5))
         
         self.ADDLIFE = pygame.USEREVENT + 2
         pygame.time.set_timer(self.ADDLIFE, 2000)
@@ -170,10 +169,11 @@ class App():
         # pygame.display.flip()
     
     def after_game(self):
+        pygame.quit()
         messagebox.showinfo("End of Game", "The game has ended with score={}".format(
             self.scoretracker.getScore()
         ))
-        pygame.quit()
+        
     
     def create_surface(self):
         sf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
