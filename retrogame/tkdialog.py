@@ -1,7 +1,9 @@
 import tkinter
 from tkinter import *
 from retrogame.score_tracker import Score
+
 scor_track = Score()
+
 class Menu(Tk):
     def placeTopics(self, back, lab):
         back.place(x=0, y=0)
@@ -18,7 +20,7 @@ class Menu(Tk):
 
         self.placeTopics(self.bg_label,self.topic)
 
-app = Menu()
+
 
 class ButtonFrame(Frame):
     def destroy_menu(self):
@@ -36,9 +38,11 @@ class ButtonFrame(Frame):
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
         self.scoreboard.grid(row=3,column=0,sticky="NSEW")
 
+def main():
+    app = Menu()
+    buttons = ButtonFrame(app)
+    buttons.place(x=230,y=170)
+    return app
 
-buttons = ButtonFrame(app)
-buttons.place(x=230,y=170)
-
-
-app.mainloop()
+if __name__ == "__main__":
+    app.mainloop()

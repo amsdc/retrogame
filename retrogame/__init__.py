@@ -19,9 +19,13 @@ from retrogame.constants import (
 import retrogame.sprites as sp
 from retrogame.score_tracker import Score as ScoreTracker
 
+from retrogame import sounds 
+
 
 class App():
     def __init__(self):
+        # Sound Initiator
+        
         pygame.init()
         
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -131,6 +135,7 @@ class App():
                         if isinstance(element, sp.Enemies):
                             element.kill()
                     self.scoretracker.rem_life()
+                    sounds.stone_sound.play()
             
             if pygame.sprite.spritecollideany(self.player, self.lives):
                 # If so, then remove the player and stop the loop
@@ -150,6 +155,7 @@ class App():
                     if isinstance(element, sp.Friends):
                         element.kill()
                 self.scoretracker.add_point()
+                sounds.apple_sound.play()
 
             self.screen.blit(text, textRect)
             pygame.display.flip()
