@@ -14,6 +14,7 @@ from retrogame.constants import (
     SCREEN_HEIGHT
 )
 import retrogame.sprites as sp
+from retrogame.score_tracker import Score as ScoreTracker
 
 
 class App():
@@ -27,6 +28,7 @@ class App():
         pygame.time.set_timer(self.ADDENEMY, 750)
         
         self.player = sp.Player()
+        self.scoretracker = ScoreTracker()
         
         self.enemies = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
@@ -78,8 +80,16 @@ class App():
             
             if pygame.sprite.spritecollideany(self.player, self.enemies):
                 # If so, then remove the player and stop the loop
-                self.player.kill()
-                self.running = False
+                #print(self.scoretracker.getLives())
+                if self.scoretracker.getLives()==0:
+                    self.player.kill()
+                    self.running = False
+                else:
+                    hitlist = pygame.sprite.spritecollide(self.player, self.enemies,False)
+                    for element in hitlist:
+                        if isinstance(element, sp.Stone):
+                            element.kill()
+                    self.scoretracker.rem_life()
             
             
             pygame.display.flip()
