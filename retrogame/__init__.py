@@ -13,13 +13,16 @@ from retrogame.constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT
 )
+import retrogame.sprites as sp
+
 
 class App():
     def __init__(self):
         pygame.init()
         
-        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
+        self.player = sp.Player()
         self.mainloop()
         
     def mainloop(self):
@@ -42,6 +45,24 @@ class App():
                 # Did the user click the window close button? If so, stop the loop.
                 elif event.type == QUIT:
                     self.running = False
+        
+            self.screen.fill((0,0,0))
+            
+            self.screen.blit(self.player.surf, (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+            
+            pygame.display.flip()
+        
+        # surf, rect = self.create_surface()
+        
+        # screen.blit(surf, (0, 0))
+        # pygame.display.flip()
+    
+    def create_surface(self):
+        sf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+        rect = self.main_sf.fill((0, 0, 0))
+        
+        return sf, rect
+        
     
 
 def main():
