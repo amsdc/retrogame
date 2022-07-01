@@ -76,6 +76,10 @@ class App():
             for entity in self.all_sprites:
                 self.screen.blit(entity.surf, entity.rect)
             
+            if pygame.sprite.spritecollideany(self.player, self.enemies):
+                # If so, then remove the player and stop the loop
+                self.player.kill()
+                self.running = False
             
             
             pygame.display.flip()
