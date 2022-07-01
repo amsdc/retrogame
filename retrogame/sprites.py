@@ -1,10 +1,11 @@
 import pygame
+from pygame.locals import (K_UP,K_DOWN,K_LEFT,K_RIGHT)
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.surf = pygame.Surface((75, 25))
-        self.surf.fill((255, 255, 255))
+        self.surf.fill((245,27,2))
         self.rect = self.surf.get_rect()
     
     def update(self, pressed_keys):
