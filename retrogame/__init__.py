@@ -35,24 +35,27 @@ class App():
             for event in pygame.event.get():
                 # Did the user hit a key?
                 if event.type == KEYDOWN:
+                    
                     # Was it the Escape key? If so, stop the loop.
                     if event.key == K_ESCAPE:
                         self.running = False
-                    elif event.key == K_UP:
-                        print("Up presssed")
+                    # elif event.key == K_UP:
+                        # print("Up presssed")
                         # running = False
 
                 # Did the user click the window close button? If so, stop the loop.
                 elif event.type == QUIT:
                     self.running = False
-        
-            self.screen.fill((0,0,0))
-            
-            self.screen.blit(self.player.surf, (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
-            
+                    
             pressed_keys = pygame.key.get_pressed()
             
             self.player.update(pressed_keys)
+        
+            self.screen.fill((0,0,0))
+            
+            self.screen.blit(self.player.surf, self.player.rect)
+            
+            
             
             pygame.display.flip()
         

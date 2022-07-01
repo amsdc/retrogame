@@ -19,8 +19,10 @@ class Player(pygame.sprite.Sprite):
     
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
+            print("UP")
             self.rect.move_ip(0, -5)
         if pressed_keys[K_DOWN]:
+            print("DN")
             self.rect.move_ip(0, 5)
         if pressed_keys[K_LEFT]:
             self.rect.move_ip(-5, 0)
