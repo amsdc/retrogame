@@ -14,11 +14,11 @@ class Score:
     def getScore(self):
         return self.score__["score"]
 
-    def saveScore(self):
+    def save_score(self):
         json_score = json.dumps(self.score__, indent=3)
         self.file.write(json_score)
 
-    def closeFile(self):
+    def close_file(self):
         self.file.close()
 
     def add_point(self):

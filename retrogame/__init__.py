@@ -1,3 +1,6 @@
+import random
+from tkinter import messagebox
+
 import pygame
 from pygame.locals import (
     K_UP,
@@ -28,10 +31,18 @@ class App():
         self.ADDENEMY = pygame.USEREVENT + 1
         pygame.time.set_timer(self.ADDENEMY, 750)
         
+        self.ADDLIFE = pygame.USEREVENT + 2
+        pygame.time.set_timer(self.ADDLIFE, 2000)
+        
+        self.ADDAPPLE = pygame.USEREVENT + 3
+        pygame.time.set_timer(self.ADDAPPLE, 2000)
+        
         self.player = sp.Player()
         self.scoretracker = ScoreTracker()
         
         self.enemies = pygame.sprite.Group()
+        self.lives = pygame.sprite.Group()
+        self.apples = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.player)
         
@@ -40,6 +51,8 @@ class App():
         self.font = pygame.font.Font("BACKTO1982.ttf",30)
 
         self.mainloop()
+        
+        self.after_game()
         
     def mainloop(self):
         # Variable to keep the main loop running
@@ -69,6 +82,18 @@ class App():
                     new_enemy = sp.Stone()
                     self.enemies.add(new_enemy)
                     self.all_sprites.add(new_enemy)
+                
+                elif event.type == self.ADDLIFE:
+                    doit = random.randint(0, 1)
+                    if self.scoretracker.getLives() < 3 and doit:
+                        mylife = sp.Life()
+                        self.lives.add(mylife)
+                        self.all_sprites.add(mylife)
+                
+                elif event.type == self.ADDAPPLE:
+                    new_apple = sp.Apple()
+                    self.apples.add(new_apple)
+                    self.all_sprites.add(new_apple)
             
             self.screen.fill((0,0,0))
 
@@ -83,7 +108,8 @@ class App():
             
             # Update enemy position
             self.enemies.update()
-        
+            self.lives.update()
+            self.apples.update()
             
             
             # Draw all sprites
@@ -95,13 +121,34 @@ class App():
                 #print(self.scoretracker.getLives())
                 if self.scoretracker.getLives()==1:
                     self.player.kill()
+                    self.scoretracker.save_score()
+                    self.scoretracker.close_file()
                     self.running = False
                 else:
                     hitlist = pygame.sprite.spritecollide(self.player, self.enemies, False)
                     for element in hitlist:
-                        if isinstance(element, sp.Stone):
+                        if isinstance(element, sp.Enemies):
                             element.kill()
                     self.scoretracker.rem_life()
+            
+            if pygame.sprite.spritecollideany(self.player, self.lives):
+                # If so, then remove the player and stop the loop
+                #print(self.scoretracker.getLives())
+                hitlist = pygame.sprite.spritecollide(self.player, self.lives, False)
+                for element in hitlist:
+                    if isinstance(element, sp.Life):
+                        element.kill()
+                if self.scoretracker.getLives()<3:
+                    self.scoretracker.add_life()
+            
+            if pygame.sprite.spritecollideany(self.player, self.apples):
+                # If so, then remove the player and stop the loop
+                #print(self.scoretracker.getLives())
+                hitlist = pygame.sprite.spritecollide(self.player, self.apples, False)
+                for element in hitlist:
+                    if isinstance(element, sp.Friends):
+                        element.kill()
+                self.scoretracker.add_point()
 
             self.screen.blit(text, textRect)
             pygame.display.flip()
@@ -112,6 +159,11 @@ class App():
         
         # screen.blit(surf, (0, 0))
         # pygame.display.flip()
+    
+    def after_game(self):
+        messagebox.showinfo("End of Game", "The game has ended with score={}".format(
+            self.scoretracker.getScore()
+        ))
     
     def create_surface(self):
         sf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
