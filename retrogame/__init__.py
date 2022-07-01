@@ -50,6 +50,10 @@ class App():
             
             self.screen.blit(self.player.surf, (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
             
+            pressed_keys = pygame.key.get_pressed()
+            
+            self.player.update(pressed_keys)
+            
             pygame.display.flip()
         
         # surf, rect = self.create_surface()
