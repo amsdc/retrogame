@@ -1,0 +1,3 @@
+import retrogame
+
+retrogame.main()
