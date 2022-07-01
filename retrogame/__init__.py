@@ -97,7 +97,8 @@ class App():
             
             self.screen.fill((0,0,0))
 
-            text = self.font.render(f"Lives : {self.scoretracker.getLives()}", True, (255, 255, 255), (0, 0, 0))
+            text = self.font.render(f"Lives: {self.scoretracker.getLives()} "
+                                    f"Score: {self.scoretracker.getScore()}", True, (255, 255, 255), (0, 0, 0))
             textRect = text.get_rect()
             textRect.top = 5
             textRect.left = 5
