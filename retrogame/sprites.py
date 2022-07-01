@@ -3,6 +3,7 @@ import random
 import pygame
 
 from pygame.locals import (
+    RLEACCEL,
     K_UP,
     K_DOWN,
     K_LEFT,
@@ -70,6 +71,8 @@ class Stone(pygame.sprite.Sprite):
         self.s_bottom_padding = 5
         
         self.surf = pygame.Surface((self.player_width, self.player_height))
+        # self.surf = pygame.image.load("img/stone.png").convert()
+        # self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.surf.fill((255, 255, 255))
         self.rect = self.surf.get_rect(
             center=(

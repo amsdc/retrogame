@@ -67,6 +67,8 @@ class App():
                     new_enemy = sp.Stone()
                     self.enemies.add(new_enemy)
                     self.all_sprites.add(new_enemy)
+            
+            self.screen.fill((0,0,0))
                     
             pressed_keys = pygame.key.get_pressed()
             
@@ -75,7 +77,7 @@ class App():
             # Update enemy position
             self.enemies.update()
         
-            self.screen.fill((0,0,0))
+            
             
             # Draw all sprites
             for entity in self.all_sprites:
