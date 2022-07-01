@@ -1,4 +1,13 @@
 import pygame
+from pygame.locals import (
+    K_UP,
+    K_DOWN,
+    K_LEFT,
+    K_RIGHT,
+    K_ESCAPE,
+    KEYDOWN,
+    QUIT,
+)
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
