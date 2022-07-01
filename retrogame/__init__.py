@@ -22,7 +22,16 @@ class App():
         
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
+        # Create a custom event for adding a new enemy
+        self.ADDENEMY = pygame.USEREVENT + 1
+        pygame.time.set_timer(self.ADDENEMY, 750)
+        
         self.player = sp.Player()
+        
+        self.enemies = pygame.sprite.Group()
+        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites.add(self.player)
+
         self.mainloop()
         
     def mainloop(self):
@@ -47,13 +56,25 @@ class App():
                 elif event.type == QUIT:
                     self.running = False
                     
+                # Add a new enemy?
+                elif event.type == self.ADDENEMY:
+                    # Create the new enemy and add it to sprite groups
+                    new_enemy = sp.Stone()
+                    self.enemies.add(new_enemy)
+                    self.all_sprites.add(new_enemy)
+                    
             pressed_keys = pygame.key.get_pressed()
             
             self.player.update(pressed_keys)
+            
+            # Update enemy position
+            self.enemies.update()
         
             self.screen.fill((0,0,0))
             
-            self.screen.blit(self.player.surf, self.player.rect)
+            # Draw all sprites
+            for entity in self.all_sprites:
+                self.screen.blit(entity.surf, entity.rect)
             
             
             

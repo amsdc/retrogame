@@ -74,14 +74,14 @@ class Stone(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect(
             center=(
                 random.randint(0+self.s_left_padding, SCREEN_WIDTH-self.s_right_padding),
-                random.randint(-20, -100),
+                random.randint(-100, -20),
             )
         )
-        self.speed = random.randint(5, 20)
+        self.speed = random.randint(1, 3)
 
     # Move the sprite based on speed
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
-        self.rect.move_ip(-self.speed, 0)
-        if self.rect.right < 0:
+        self.rect.move_ip(0, self.speed)
+        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
