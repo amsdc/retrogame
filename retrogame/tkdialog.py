@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import *
 from retrogame.score_tracker import Score
+from retrogame.pygamediag import main as pygamemain
 
 scor_track = Score()
 
@@ -24,11 +25,12 @@ class Menu(Tk):
 
 class ButtonFrame(Frame):
     def destroy_menu(self):
-        app.destroy()
+        self.root.destroy()
     def __init__(self,root):
         super().__init__(root)
-        self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=app.destroy)
-        self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE)
+        self.root = root
+        self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=root.destroy)
+        self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE, command=self.open_game)
         self.highscore = scor_track.getScore()
         self.scoreboard = Label(self,text=f"Highscore : {self.highscore}",font=("Arial",20))
         self.__place_widgets()
@@ -37,11 +39,17 @@ class ButtonFrame(Frame):
         self.startButton.grid(row=1,column=0,sticky="NSEW")
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
         self.scoreboard.grid(row=3,column=0,sticky="NSEW")
+        
+    def open_game(self):
+        # self.root.deiconify()
+        pygamemain()
+        # self.root.withdraw()
 
 def main():
     app = Menu()
     buttons = ButtonFrame(app)
     buttons.place(x=230,y=170)
+    app.mainloop()
     return app
 
 if __name__ == "__main__":

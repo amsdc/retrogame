@@ -1,3 +1,2 @@
 import retrogame
-
 retrogame.main()

@@ -55,9 +55,9 @@ class Player(pygame.sprite.Sprite):
             # # print("DN")
             # self.rect.move_ip(0, 5)
         if pressed_keys[K_LEFT]:
-            self.rect.move_ip(-5, 0)
+            self.rect.move_ip(-1.5, 0)
         if pressed_keys[K_RIGHT]:
-            self.rect.move_ip(5, 0)
+            self.rect.move_ip(1.5, 0)
             
         # Keep player on the screen
         if self.rect.left < self.p_left_padding:
