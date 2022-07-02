@@ -1,3 +1,18 @@
+# This file is part of Stoneworks (Sishya Hacks D.A.V.).
+
+# Stoneworks (Sishya Hacks D.A.V.) is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# Stoneworks (Sishya Hacks D.A.V.) is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with Stoneworks (Sishya Hacks D.A.V.).  If not, see <https://www.gnu.org/licenses/>.
+
 import tkinter
 from tkinter import *
 from tkinter import messagebox
@@ -11,10 +26,17 @@ class Menu(Tk):
     def placeTopics(self, back, lab):
         back.place(x=0, y=0)
         lab.place(x=80, y=10)
+    
     def __init__(self):
+        """Menu
+        
+        This class provides a menu to work with the application. It 
+        displays the highscore, as well as relevant buttons.
+        """
         super().__init__()
         self.geometry("700x500")
         self.title("Retro Game")
+        
         self.menu_icon = tkinter.PhotoImage(file="img/menu-icon.png")
         self.background = PhotoImage(file="img/background.png")
         self.iconphoto(False,self.menu_icon)
@@ -29,6 +51,7 @@ class ButtonFrame(Frame):
 
     def destroy_menu(self):
         self.root.destroy()
+        
     def __init__(self,root):
         super().__init__(root)
         self.root = root
@@ -46,7 +69,6 @@ class ButtonFrame(Frame):
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
         self.helpButton.grid(row=3,column=0,sticky="NSEW")
         self.scoreboard.grid(row=4,column=0,sticky="NSEW")
-
         
     def open_game(self):
         # self.root.deiconify()
@@ -56,6 +78,7 @@ class ButtonFrame(Frame):
         self.highscore.set("Highscore: {}".format(scor_track.get_max_score()))
         
         # self.root.withdraw()
+
 
 import tkinter as tk
 from tkinter import ttk
@@ -116,6 +139,7 @@ def main():
     buttons.place(x=230,y=100)
     app.mainloop()
     return app
+
 
 if __name__ == "__main__":
     app.mainloop()

@@ -1,3 +1,18 @@
+# This file is part of Stoneworks (Sishya Hacks D.A.V.).
+
+# Stoneworks (Sishya Hacks D.A.V.) is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# Stoneworks (Sishya Hacks D.A.V.) is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with Stoneworks (Sishya Hacks D.A.V.).  If not, see <https://www.gnu.org/licenses/>.
+
 import random
 
 import pygame
@@ -39,7 +54,7 @@ class Player(pygame.sprite.Sprite):
         
         # self.surf = pygame.Surface((self.player_width, self.player_height))
         # self.surf.fill((245,27,2))
-        self.surf = pygame.image.load("img/angryball.png").convert()
+        self.surf = pygame.image.load("img/angryball.png").convert_alpha()
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect()
         
@@ -82,7 +97,7 @@ class Stone(pygame.sprite.Sprite, Enemies):
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
         pichoice = random.choice(["stone.png", "stone2.png"])
-        self.surf = pygame.image.load("img/{}".format(pichoice)).convert()
+        self.surf = pygame.image.load("img/{}".format(pichoice)).convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
@@ -92,13 +107,17 @@ class Stone(pygame.sprite.Sprite, Enemies):
                 random.randint(-100, -20),
             )
         )
+        
+        # self.rect.left = 750
+        # self.rect.top = random.randint(-100, -20)
+        
         self.speed = random.randint(1, 3)
 
     # Move the sprite based on speed
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
 
 class Life(pygame.sprite.Sprite):
@@ -112,7 +131,7 @@ class Life(pygame.sprite.Sprite):
         self.s_bottom_padding = 5
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
-        self.surf = pygame.image.load("img/heart.png").convert()
+        self.surf = pygame.image.load("img/heart.png").convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
@@ -128,7 +147,7 @@ class Life(pygame.sprite.Sprite):
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
 
 class Apple(pygame.sprite.Sprite, Friends):
@@ -142,7 +161,7 @@ class Apple(pygame.sprite.Sprite, Friends):
         self.s_bottom_padding = 5
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
-        self.surf = pygame.image.load("img/apple.png").convert()
+        self.surf = pygame.image.load("img/apple.png").convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
@@ -158,5 +177,5 @@ class Apple(pygame.sprite.Sprite, Friends):
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
