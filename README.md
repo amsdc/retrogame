@@ -1,18 +1,19 @@
 
-# Stoneworks - 2022
+# Meteorite Shower - 2022
 
-Stoneworks is a retro game developed on Python 3.10. Using Pygame as the primary game engine. Developed as an entry for SishyaHacks 2022.
+(Formerly "Stoneworks - 2022" - name changed due to [trademark issues](https://stoneworksap.com/) )
+Meteorite Shower is a retro game developed on Python 3.10. Using Pygame as the primary game engine. Developed as an entry for SishyaHacks 2022.
 
 
 
 ## About the Game
-This is a game where the player(the green ball which we call bob) has to excape from the stones falling on him.
+This is a game where the player (the green ball which we call bob) has to excape from the stones/meteors falling on him.
 
 He needs to get points by collecting falling apples(i.e by standing below the apple),and get lives by collecting the falling hearts.
 
 Bob has two basic movements, left and right which is accessible by left and right arrow keys respectively, that he needs to  use to excape from the falling stones.
 
-Each game starts with 3 lives a score of 0. 
+Each game starts with 3 lives and a score of 0. 
 
 The one with the highest score wins!
 ## Key Features
