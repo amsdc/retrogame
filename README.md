@@ -1,7 +1,8 @@
 
 # Meteorite Shower - 2022
 
-(Formerly "Stoneworks - 2022" - name changed due to [trademark issues](https://stoneworksap.com/) )
+(Formerly "Stoneworks - 2022" - name changed due to [trademark issues](https://stoneworksap.com/))
+
 Meteorite Shower is a retro game developed on Python 3.10. Using Pygame as the primary game engine. Developed as an entry for SishyaHacks 2022.
 
 
