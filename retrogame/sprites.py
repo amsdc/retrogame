@@ -92,13 +92,17 @@ class Stone(pygame.sprite.Sprite, Enemies):
                 random.randint(-100, -20),
             )
         )
+        
+        # self.rect.left = 750
+        # self.rect.top = random.randint(-100, -20)
+        
         self.speed = random.randint(1, 3)
 
     # Move the sprite based on speed
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
 
 class Life(pygame.sprite.Sprite):
@@ -128,7 +132,7 @@ class Life(pygame.sprite.Sprite):
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
 
 class Apple(pygame.sprite.Sprite, Friends):
@@ -158,5 +162,5 @@ class Apple(pygame.sprite.Sprite, Friends):
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
         self.rect.move_ip(0, self.speed)
-        if self.rect.left > SCREEN_HEIGHT-self.s_bottom_padding:
+        if self.rect.bottom > SCREEN_HEIGHT-self.s_bottom_padding:
             self.kill()
