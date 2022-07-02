@@ -26,10 +26,17 @@ class Menu(Tk):
     def placeTopics(self, back, lab):
         back.place(x=0, y=0)
         lab.place(x=80, y=10)
+    
     def __init__(self):
+        """Menu
+        
+        This class provides a menu to work with the application. It 
+        displays the highscore, as well as relevant buttons.
+        """
         super().__init__()
         self.geometry("700x500")
         self.title("Retro Game")
+        
         self.menu_icon = tkinter.PhotoImage(file="img/menu-icon.png")
         self.background = PhotoImage(file="img/background.png")
         self.iconphoto(False,self.menu_icon)
@@ -39,13 +46,13 @@ class Menu(Tk):
         self.placeTopics(self.bg_label,self.topic)
 
 
-
 class ButtonFrame(Frame):
     def instructions(self):
         messagebox.showinfo("Instructions- Page", "LEFT ARROW - Move bob towards left\nRIGHT ARROW - Move bob towards\nCollect apples for points and hearts for more health\nAviod getting hit by stones!")
 
     def destroy_menu(self):
         self.root.destroy()
+        
     def __init__(self,root):
         super().__init__(root)
         self.root = root
@@ -63,7 +70,6 @@ class ButtonFrame(Frame):
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
         self.helpButton.grid(row=3,column=0,sticky="NSEW")
         self.scoreboard.grid(row=4,column=0,sticky="NSEW")
-
         
     def open_game(self):
         # self.root.deiconify()
@@ -74,12 +80,14 @@ class ButtonFrame(Frame):
         
         # self.root.withdraw()
 
+
 def main():
     app = Menu()
     buttons = ButtonFrame(app)
     buttons.place(x=230,y=100)
     app.mainloop()
     return app
+
 
 if __name__ == "__main__":
     app.mainloop()
