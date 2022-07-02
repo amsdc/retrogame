@@ -96,8 +96,11 @@ class App:
                     new_apple = sp.Apple()
                     self.apples.add(new_apple)
                     self.all_sprites.add(new_apple)
-
-            self.screen.fill((0, 0, 0))
+            
+            if self.scoretracker.getLives() == 1:
+                self.screen.fill((176, 26, 26))
+            else:
+                self.screen.fill((0, 0, 0))
 
             text = self.font.render(
                 f"Lives: {self.scoretracker.getLives()} "
@@ -150,6 +153,7 @@ class App:
                         element.kill()
                 if self.scoretracker.getLives() < 3:
                     self.scoretracker.add_life()
+                    sounds.heart_sound.play()
 
             if pygame.sprite.spritecollideany(self.player, self.apples):
                 # If so, then remove the player and stop the loop

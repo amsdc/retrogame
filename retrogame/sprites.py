@@ -54,7 +54,7 @@ class Player(pygame.sprite.Sprite):
         
         # self.surf = pygame.Surface((self.player_width, self.player_height))
         # self.surf.fill((245,27,2))
-        self.surf = pygame.image.load("img/angryball.png").convert()
+        self.surf = pygame.image.load("img/angryball.png").convert_alpha()
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect()
         
@@ -97,7 +97,7 @@ class Stone(pygame.sprite.Sprite, Enemies):
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
         pichoice = random.choice(["stone.png", "stone2.png"])
-        self.surf = pygame.image.load("img/{}".format(pichoice)).convert()
+        self.surf = pygame.image.load("img/{}".format(pichoice)).convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
@@ -131,7 +131,7 @@ class Life(pygame.sprite.Sprite):
         self.s_bottom_padding = 5
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
-        self.surf = pygame.image.load("img/heart.png").convert()
+        self.surf = pygame.image.load("img/heart.png").convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
@@ -161,7 +161,7 @@ class Apple(pygame.sprite.Sprite, Friends):
         self.s_bottom_padding = 5
         
         #self.surf = pygame.Surface((self.player_width, self.player_height))
-        self.surf = pygame.image.load("img/apple.png").convert()
+        self.surf = pygame.image.load("img/apple.png").convert_alpha()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         # pygame.transform.scale(self.surf, (self.player_width, self.player_height))
         # self.surf.fill((255, 255, 255))
