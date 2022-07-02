@@ -23,8 +23,13 @@ The one with the highest score wins!
 * Retro Game menu
  
 * Two differrent types of stones
+
+## Installing the game
+1. `git clone https://github.com/sishyahacks-dav/retrogame.git`
+1. `pip install pygame`
+
 ## Running the game 
-Simply double click the file named "retrogame.exe" which can be found at the Releases page.
+1. `py run_retrogame.py`
 ## Screenshots
 
 #### Game Menu :
