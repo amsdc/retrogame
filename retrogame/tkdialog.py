@@ -13,11 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Stoneworks (Sishya Hacks D.A.V.).  If not, see <https://www.gnu.org/licenses/>.
 
+
 import tkinter
 from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
-from tkinter import ttk
+import retrogame.sounds as sounds
 
 from retrogame.score_tracker import Score
 from retrogame.constants import SCREEN_WIDTH, SCREEN_HEIGHT
@@ -101,6 +102,8 @@ class Menu(Tk):
 
         self.placeTopics(self.bg_label,self.topic)
 
+
+
 class ButtonFrame(Frame):
     def instructions(self):
         messagebox.showinfo("Instructions- Page", "LEFT ARROW - Move bob towards left\nRIGHT ARROW - Move bob towards\nCollect apples for points and hearts for more health\nAviod getting hit by stones!")
@@ -110,6 +113,7 @@ class ButtonFrame(Frame):
         
     def __init__(self,root):
         super().__init__(root)
+        sounds.back_sound.play(loops=-1)
         self.root = root
         self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=root.destroy)
         self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE, command=self.open_game)
@@ -129,10 +133,12 @@ class ButtonFrame(Frame):
         
     def open_game(self):
         # self.root.deiconify()
+        sounds.back_sound.stop()
         pygamemain()
         scor_track.close_file()
         scor_track.open_file()
         self.highscore.set("Highscore: {}".format(scor_track.get_max_score()))
+        sounds.back_sound.play(loops=-1)
         
         # self.root.withdraw()
 
