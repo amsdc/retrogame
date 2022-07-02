@@ -20,6 +20,8 @@ from tkinter import messagebox
 import tkinter as tk
 import retrogame.sounds as sounds
 
+import pygame
+
 from retrogame.score_tracker import Score
 from retrogame.constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from retrogame.pygamediag import main as pygamemain
@@ -113,7 +115,9 @@ class ButtonFrame(Frame):
         
     def __init__(self,root):
         super().__init__(root)
-        sounds.back_sound.play(loops=-1)
+        self.back_sound = pygame.mixer.Sound("audio/menu-backsound.mp3")
+        self.back_sound.play(loops=-1)
+        self.back_sound.set_volume(0.3)
         self.root = root
         self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=root.destroy)
         self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE, command=self.open_game)
@@ -133,12 +137,15 @@ class ButtonFrame(Frame):
         
     def open_game(self):
         # self.root.deiconify()
-        sounds.back_sound.stop()
+        self.back_sound.stop()
         pygamemain()
         scor_track.close_file()
         scor_track.open_file()
         self.highscore.set("Highscore: {}".format(scor_track.get_max_score()))
-        sounds.back_sound.play(loops=-1)
+        pygame.mixer.init()
+        self.back_sound = pygame.mixer.Sound("audio/menu-backsound.mp3")
+        self.back_sound.play(loops=-1)
+        self.back_sound.set_volume(0.3)
         
         # self.root.withdraw()
 
