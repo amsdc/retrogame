@@ -28,6 +28,7 @@ scor_track = Score()
 class InstructionLevel(tk.Toplevel):
     def __init__(self, root):
         super().__init__(root)
+        self["bg"]="#0FAF97"
         self.title("Instructions Page")
         self.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}+0+0")
 
@@ -45,15 +46,15 @@ class InstructionLevel(tk.Toplevel):
         self.label4img1 = tk.Label(self,image=self.stone1)
         self.label4img2 = tk.Label(self,image=self.stone2)
 
-        self.label0 = tk.Label(self)
-        self.toplbl = tk.Label(self)
-        self.botlbl = tk.Label(self)
-        self.label1 = tk.Label(self,text="1 - Press left arrow to move bob left",font=("Arial",20))
-        self.label2 = tk.Label(self,text="2 - Press right arrow to move bob right",font=("Arial",20))
-        self.label3 = tk.Label(self,text="3 - Collect apples to gain points and hearts to gain lives",font=("Arial",20))
-        self.label4 = tk.Label(self,text="4 - You will lose a life when a stone falls on you!",font=("Arial",20))
-        self.label5 = tk.Label(self,text="5 - You will start with 3 lives at the beginning",font=("Arial",20))
-        self.label6 = tk.Label(self)
+        self.label0 = tk.Label(self,bg="#0FAF97")
+        self.toplbl = tk.Label(self,bg="#0FAF97")
+        self.botlbl = tk.Label(self,bg="#0FAF97")
+        self.label1 = tk.Label(self,text="1 - Press left arrow to move bob left",font=("Arial",20, "bold"), bg="#0FAF97")
+        self.label2 = tk.Label(self,text="2 - Press right arrow to move bob right",font=("Arial",20, "bold"), bg="#0FAF97")
+        self.label3 = tk.Label(self,text="3 - Collect apples to gain points and hearts to gain lives",font=("Arial",20, "bold"), bg="#0FAF97")
+        self.label4 = tk.Label(self,text="4 - You will lose a life when a stone falls on you!",font=("Arial",20, "bold"),bg="#0FAF97")
+        self.label5 = tk.Label(self,text="5 - You will start with 3 lives at the beginning",font=("Arial",20, "bold"),bg="#0FAF97")
+        self.label6 = tk.Label(self,bg="#0FAF97")
 
         self.label0.grid(row=0, column=0, rowspan=5)
         self.label0.grid(row=0, column=4, rowspan=5)
