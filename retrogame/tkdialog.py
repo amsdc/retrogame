@@ -1,5 +1,7 @@
 import tkinter
 from tkinter import *
+from tkinter import messagebox
+
 from retrogame.score_tracker import Score
 from retrogame.pygamediag import main as pygamemain
 
@@ -24,6 +26,9 @@ class Menu(Tk):
 
 
 class ButtonFrame(Frame):
+    def instructions(self):
+        messagebox.showinfo("Instructions- Page", "LEFT ARROW - Move bob towards left\nRIGHT ARROW - Move bob towards\nCollect apples for points and hearts for more health\nAviod getting hit by stones!")
+
     def destroy_menu(self):
         self.root.destroy()
     def __init__(self,root):
@@ -31,14 +36,17 @@ class ButtonFrame(Frame):
         self.root = root
         self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=root.destroy)
         self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE, command=self.open_game)
-        self.highscore = scor_track.getScore()
+        self.helpButton = Button(self,text="Get Instructions",font=("Arial",20),borderwidth=5,relief=RIDGE,command=self.instructions)
+        self.highscore = scor_track.getHighScore()
         self.scoreboard = Label(self,text=f"Highscore : {self.highscore}",font=("Arial",20))
         self.__place_widgets()
 
     def __place_widgets(self):
         self.startButton.grid(row=1,column=0,sticky="NSEW")
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
-        self.scoreboard.grid(row=3,column=0,sticky="NSEW")
+        self.helpButton.grid(row=3,column=0,sticky="NSEW")
+        self.scoreboard.grid(row=4,column=0,sticky="NSEW")
+
         
     def open_game(self):
         # self.root.deiconify()
@@ -48,7 +56,7 @@ class ButtonFrame(Frame):
 def main():
     app = Menu()
     buttons = ButtonFrame(app)
-    buttons.place(x=230,y=170)
+    buttons.place(x=230,y=100)
     app.mainloop()
     return app
 
