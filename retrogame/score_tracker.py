@@ -12,8 +12,12 @@ class Score:
         
 
         self.score = 0
+        self.create_file_if_not_exists()
         self.open_file()
-    
+
+    def create_file_if_not_exists(self):
+        if not os.path.isfile(FILE_PATH):
+            open(FILE_PATH, "w").close()
     
     def open_file(self):
         self.file = open(FILE_PATH, "r")

@@ -1,29 +1,17 @@
-# Simple pygame program
+from tkinter import *
 
-# Import and initialize the pygame library
-import pygame
-pygame.init()
+class InstructionLevel(Toplevel):
+    def __init__(self,root):
+        super().__init__(root)
+        self.title("Instructions Page")
+        self.geometry("500x500")
+        self.icon = PhotoImage(r"menu-icon.png")
+        self.iconphoto(False,self.icon)
+        self.arrow1 = PhotoImage(r"arrow-left.png")
+        self.arrow2 = PhotoImage(r"arrow-right.png")
+        Label(text="Press the left arrow to move bob left ",image=self.arrow1).pack()
+        Label(text="Press the right arrow to move bob right ", image=self.arrow2).pack()
 
-# Set up the drawing window
-screen = pygame.display.set_mode([500, 500])
-
-# Run until the user asks to quit
-running = True
-while running:
-
-    # Did the user click the window close button?
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    # Fill the background with white
-    screen.fill((255, 255, 255))
-
-    # Draw a solid blue circle in the center
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
-
-    # Flip the display
-    pygame.display.flip()
-
-# Done! Time to quit.
-pygame.quit()
+app = Tk()
+inst = InstructionLevel(app)
+app.mainloop()
