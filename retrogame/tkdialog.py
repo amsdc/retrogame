@@ -37,8 +37,10 @@ class ButtonFrame(Frame):
         self.quitButton = Button(self,text="Quit the Game  ",font=("Arial",20),borderwidth=5,relief=RIDGE,command=root.destroy)
         self.startButton = Button(self,text="Start new Game",font=("Arial",20),borderwidth=5,relief=RIDGE, command=self.open_game)
         self.helpButton = Button(self,text="Get Instructions",font=("Arial",20),borderwidth=5,relief=RIDGE,command=self.instructions)
-        self.highscore = scor_track.getHighScore()
-        self.scoreboard = Label(self,text=f"Highscore : {self.highscore}",font=("Arial",20))
+        # self.highscore = scor_track.get_max_score()
+        self.highscore = tkinter.StringVar(root, "Highscore: {}".format(scor_track.get_max_score()))
+        self.scoreboard = Label(self,textvariable=self.highscore,font=("Arial",20))
+
         self.__place_widgets()
 
     def __place_widgets(self):
@@ -51,6 +53,10 @@ class ButtonFrame(Frame):
     def open_game(self):
         # self.root.deiconify()
         pygamemain()
+        scor_track.close_file()
+        scor_track.open_file()
+        self.highscore.set("Highscore: {}".format(scor_track.get_max_score()))
+        
         # self.root.withdraw()
 
 def main():
