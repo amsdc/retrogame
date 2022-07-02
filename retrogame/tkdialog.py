@@ -16,6 +16,8 @@
 import tkinter
 from tkinter import *
 from tkinter import messagebox
+import tkinter as tk
+from tkinter import ttk
 
 from retrogame.score_tracker import Score
 from retrogame.pygamediag import main as pygamemain
@@ -79,21 +81,17 @@ class ButtonFrame(Frame):
         
         # self.root.withdraw()
 
-
-import tkinter as tk
-from tkinter import ttk
-
 class InstructionLevel(tk.Toplevel):
     def __init__(self, root):
         super().__init__(root)
         self.title("Instructions Page")
         self.geometry("700x300")
-        self.arrl = tk.PhotoImage(file=r"arrow-left.png")
-        self.arrr = tk.PhotoImage(file=r"arrow-right.png")
-        self.apple = tk.PhotoImage(file=r"apple.png")
-        self.heart = tk.PhotoImage(file=r"heart.png")
-        self.stone1 = tk.PhotoImage(file=r"stone.png")
-        self.stone2 = tk.PhotoImage(file=r"stone2.png")
+        self.arrl = tk.PhotoImage(file="img/arrow-left.png")
+        self.arrr = tk.PhotoImage(file="img/arrow-right.png")
+        self.apple = tk.PhotoImage(file="img/apple.png")
+        self.heart = tk.PhotoImage(file="img/heart.png")
+        self.stone1 = tk.PhotoImage(file="img/stone.png")
+        self.stone2 = tk.PhotoImage(file="img/stone2.png")
 
         self.label1img = tk.Label(self,image=self.arrl)
         self.label2img = tk.Label(self,image=self.arrr)
@@ -103,6 +101,8 @@ class InstructionLevel(tk.Toplevel):
         self.label4img2 = tk.Label(self,image=self.stone2)
 
         self.label0 = tk.Label(self)
+        self.toplbl = tk.Label(self)
+        self.botlbl = tk.Label(self)
         self.label1 = tk.Label(self,text="1 - Press left arrow to move bob left",font=("Arial",20))
         self.label2 = tk.Label(self,text="2 - Press right arrow to move bob right",font=("Arial",20))
         self.label3 = tk.Label(self,text="3 - Collect apples to gain points and hearts to gain lives",font=("Arial",20))
@@ -112,20 +112,24 @@ class InstructionLevel(tk.Toplevel):
 
         self.label0.grid(row=0, column=0, rowspan=5)
         self.label0.grid(row=0, column=4, rowspan=5)
-        self.label1.grid(row=0, column=3,sticky="w")
-        self.label2.grid(row=1, column=3,sticky="w")
-        self.label3.grid(row=2, column=3,sticky="w")
-        self.label4.grid(row=3, column=3,sticky="w")
-        self.label5.grid(row=4, column=3,sticky="w")
-        self.label1img.grid(row=0, column=1,columnspan=2)
-        self.label2img.grid(row=1, column=1,columnspan=2)
-        self.label3img1.grid(row=2,column=1)
-        self.label3img2.grid(row=2,column=2)
-        self.label4img1.grid(row=3,column=1)
-        self.label4img2.grid(row=3,column=2)
+        self.toplbl.grid(row=0, column=0, columnspan=5)
+        self.botlbl.grid(row=6, column=0, columnspan=5)
+        self.label1.grid(row=1, column=3,sticky="w")
+        self.label2.grid(row=2, column=3,sticky="w")
+        self.label3.grid(row=3, column=3,sticky="w")
+        self.label4.grid(row=4, column=3,sticky="w")
+        self.label5.grid(row=5, column=3,sticky="w")
+        self.label1img.grid(row=1, column=1,columnspan=2)
+        self.label2img.grid(row=2, column=1,columnspan=2)
+        self.label3img1.grid(row=3,column=1)
+        self.label3img2.grid(row=3,column=2)
+        self.label4img1.grid(row=4,column=1)
+        self.label4img2.grid(row=4,column=2)
 
         tk.Grid.columnconfigure(self, 0, weight=1)
         tk.Grid.columnconfigure(self, 4, weight=1)
+        tk.Grid.rowconfigure(self, 0, weight=1)
+        tk.Grid.rowconfigure(self, 6, weight=1)
 
 
 app = tk.Tk()
