@@ -27,7 +27,7 @@ scor_track = Score()
 class Menu(Tk):
     def placeTopics(self, back, lab):
         back.place(x=0, y=0)
-        lab.place(x=80, y=10)
+        lab.place(x=175, y=10)
     
     def __init__(self):
         """Menu
@@ -37,13 +37,13 @@ class Menu(Tk):
         """
         super().__init__()
         self.geometry("700x500")
-        self.title("Retro Game")
+        self.title("Stoneworks")
         
         self.menu_icon = tkinter.PhotoImage(file="img/menu-icon.png")
         self.background = PhotoImage(file="img/background.png")
         self.iconphoto(False,self.menu_icon)
         self.bg_label = Label(self,image=self.background)
-        self.topic = Label(self,text="Retro Game ! - ShishyaHacks",font=("Arial",30),borderwidth=3,relief=SUNKEN)
+        self.topic = Label(self,text="StoneWorks - 2022",font=("Arial",30),borderwidth=3,relief=SUNKEN)
 
         self.placeTopics(self.bg_label,self.topic)
 
@@ -86,6 +86,7 @@ class InstructionLevel(tk.Toplevel):
         super().__init__(root)
         self.title("Instructions Page")
         self.geometry("700x300")
+
         self.arrl = tk.PhotoImage(file="img/arrow-left.png")
         self.arrr = tk.PhotoImage(file="img/arrow-right.png")
         self.apple = tk.PhotoImage(file="img/apple.png")
