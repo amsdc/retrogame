@@ -19,11 +19,16 @@ import os.path
 from retrogame.constants import FILE_PATH
 
 
+LEVEL_1 = 20
+LEVEL_2 = 50
+LEVEL_3 = 75
+
 class Score:
     def __init__(self):
 
         self.__lives=3
         # self.file = open(FILE_PATH, "w+")
+        self.level = 0
         
 
         self.score = 0
@@ -49,6 +54,12 @@ class Score:
     def getScore(self):
         return self.score
     
+    def get_level(self):
+        return self.level
+    
+    def level_up(self):
+        self.level += 1
+    
     def get_max_score(self):
         return self.more
 
@@ -64,6 +75,12 @@ class Score:
 
     def add_point(self):
         self.score += 1
+        if self.score >= LEVEL_3:
+            self.level = 3
+        elif self.score >= LEVEL_2:
+            self.level = 2
+        elif self.score >= LEVEL_1:
+            self.level = 1
 
     def rem_point(self):
         if self.score >= 0:

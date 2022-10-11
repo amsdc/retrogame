@@ -31,7 +31,7 @@ VSVersionInfo(
       StringTable(
         u'000004b0',
         [StringStruct(u'Comments', u'A simple retro game.'),
-        StringStruct(u'CompanyName', u'Cheap Entertainment'),
+        StringStruct(u'CompanyName', u'AMSDC'),
         StringStruct(u'FileDescription', u'Meteorite Shower'),
         StringStruct(u'FileVersion', u'1.0.0.0'),
         StringStruct(u'InternalName', u'mshower.exe'),

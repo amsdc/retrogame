@@ -34,6 +34,14 @@ from retrogame.score_tracker import Score as ScoreTracker
 from retrogame import sounds
 
 
+DIE_FACTOR = int((1 / SCREEN_WIDTH) * 10e4 * 5)
+LEV_0_ENEMY_TIMEPERIOD = 5000
+LEV_1_ENEMY_TIMEPERIOD = DIE_FACTOR*2//3
+LEV_2_ENEMY_TIMEPERIOD = DIE_FACTOR
+LEV_0_APPLE_TIMEPERIOD = 500
+LEV_1_APPLE_TIMEPERIOD = 1000
+LEV_2_APPLE_TIMEPERIOD = 2000
+
 class App:
     def __init__(self):
         # Sound Initiator
@@ -46,13 +54,14 @@ class App:
 
         # Create a custom event for adding a new enemy
         self.ADDENEMY = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADDENEMY, int((1 / SCREEN_WIDTH) * 10e4 * 5))
+        pygame.time.set_timer(self.ADDENEMY, LEV_0_ENEMY_TIMEPERIOD)
+        self.enemy_timeperiod = LEV_0_ENEMY_TIMEPERIOD
 
         self.ADDLIFE = pygame.USEREVENT + 2
         pygame.time.set_timer(self.ADDLIFE, 2000)
 
         self.ADDAPPLE = pygame.USEREVENT + 3
-        pygame.time.set_timer(self.ADDAPPLE, 2000)
+        pygame.time.set_timer(self.ADDAPPLE, LEV_0_APPLE_TIMEPERIOD)
 
         self.player = sp.Player()
         self.scoretracker = ScoreTracker()
@@ -119,7 +128,8 @@ class App:
 
             text = self.font.render(
                 f"Lives: {self.scoretracker.getLives()} "
-                f"Score: {self.scoretracker.getScore()}",
+                f"Score: {self.scoretracker.getScore()} "
+                f"Level: {self.scoretracker.get_level()}",
                 True,
                 (255, 255, 255),
                 (0, 0, 0),
@@ -179,6 +189,19 @@ class App:
                         element.kill()
                 self.scoretracker.add_point()
                 sounds.apple_sound.play()
+                
+                if self.scoretracker.get_level() == 0 and not self.enemy_timeperiod == LEV_0_ENEMY_TIMEPERIOD:
+                    pygame.time.set_timer(self.ADDENEMY, LEV_0_ENEMY_TIMEPERIOD)
+                    pygame.time.set_timer(self.ADDAPPLE, LEV_0_APPLE_TIMEPERIOD)
+                    self.enemy_timeperiod = LEV_0_ENEMY_TIMEPERIOD
+                elif self.scoretracker.get_level() == 1 and not self.enemy_timeperiod == LEV_1_ENEMY_TIMEPERIOD:
+                    pygame.time.set_timer(self.ADDENEMY, LEV_1_ENEMY_TIMEPERIOD)
+                    pygame.time.set_timer(self.ADDAPPLE, LEV_1_APPLE_TIMEPERIOD)
+                    self.enemy_timeperiod = LEV_1_ENEMY_TIMEPERIOD
+                if self.scoretracker.get_level() == 2 and not self.enemy_timeperiod == LEV_2_ENEMY_TIMEPERIOD:
+                    pygame.time.set_timer(self.ADDENEMY, LEV_2_ENEMY_TIMEPERIOD)
+                    pygame.time.set_timer(self.ADDAPPLE, LEV_2_APPLE_TIMEPERIOD)
+                    self.enemy_timeperiod = LEV_2_ENEMY_TIMEPERIOD
 
             self.screen.blit(text, textRect)
             pygame.display.flip()

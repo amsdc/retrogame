@@ -131,3 +131,7 @@ dmypy.json
 .pyre/
 
 retro_score.json
+
+run_mshower.build/
+sun_mshower.dist/
+nuitka_testing/

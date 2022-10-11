@@ -31,6 +31,9 @@ scor_track = Score()
 class InstructionLevel(tk.Toplevel):
     def __init__(self, root):
         super().__init__(root)
+        
+        self.attributes("-fullscreen", True)
+        
         self["bg"]="#0FAF97"
         self.title("Instructions Page")
         self.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}+0+0")
@@ -84,7 +87,7 @@ class InstructionLevel(tk.Toplevel):
 class Menu(Tk):
     def placeTopics(self, back, lab):
         back.place(x=0, y=0)
-        lab.place(x=175, y=10)
+        lab.place(x=180, y=10)
     
     def __init__(self):
         """Menu
@@ -94,13 +97,13 @@ class Menu(Tk):
         """
         super().__init__()
         self.geometry("700x500")
-        self.title("Stoneworks")
+        self.title("Meteorite Shower")
         
         self.menu_icon = tkinter.PhotoImage(file="img/menu-icon.png")
         self.background = PhotoImage(file="img/background.png")
         self.iconphoto(False,self.menu_icon)
         self.bg_label = Label(self,image=self.background)
-        self.topic = Label(self,text="StoneWorks - 2022",font=("Arial",30),borderwidth=3,relief=SUNKEN)
+        self.topic = Label(self,text="Meteorite Shower",font=("Arial",30),borderwidth=3,relief=SUNKEN)
 
         self.placeTopics(self.bg_label,self.topic)
 
@@ -126,6 +129,7 @@ class ButtonFrame(Frame):
         # self.highscore = scor_track.get_max_score()
         self.highscore = tkinter.StringVar(root, "Highscore: {}".format(scor_track.get_max_score()))
         self.scoreboard = Label(self,textvariable=self.highscore,font=("Arial",20))
+        self.copyright = Label(self, text="©️ Advaith and Chandran.")
 
         self.__place_widgets()
 
@@ -134,6 +138,7 @@ class ButtonFrame(Frame):
         self.quitButton.grid(row=2,column=0,sticky="NSEW")
         self.helpButton.grid(row=3,column=0,sticky="NSEW")
         self.scoreboard.grid(row=4,column=0,sticky="NSEW")
+        self.copyright.grid(row=5,column=0,sticky="NSEW")
         
     def open_game(self):
         # self.root.deiconify()
